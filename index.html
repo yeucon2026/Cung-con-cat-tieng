@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cùng Con Cất Tiếng — Sàng lọc M-CHAT-R/F™ & Mốc Ngôn ngữ CDC/ASHA (12–36 tháng)</title>
+  <style>
+    :root {
+      --bg: #FFF9F3;
+      --card: #FFFFFF;
+      --ink: #24343A;
+      --muted: #5C6D73;
+      --mint: #B8EFE0;
+      --teal: #1D7870;
+      --peach: #FAD4C0;
+      --coral: #E8866B;
+      --warn-bg: #FFF1EC;
+      --ok-bg: #EAF9F4;
+      --amber-bg: #FFF8E7;
+      --amber-bd: #F2C464;
+      --border: #E2ECE8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    .container { max-width: 720px; margin: 0 auto; padding: 14px; }
+    .card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 14px rgba(29, 120, 112, 0.06);
+    }
+    .hero-banner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: linear-gradient(135deg, #EAF9F4 0%, #FFF3EC 100%);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    h1 { margin: 0 0 8px; font-size: 21px; color: var(--teal); line-height: 1.3; }
+    h2 { margin: 0 0 10px; font-size: 18px; color: var(--ink); line-height: 1.35; }
+    h3 { margin: 0 0 8px; font-size: 16px; color: var(--teal); }
+    p { margin: 0 0 10px; }
+    .pill {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--ok-bg);
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+    .pill-high {
+      background: var(--warn-bg);
+      color: #9A3412;
+      border: 1px solid var(--coral);
+    }
+    .pill-mod {
+      background: var(--amber-bg);
+      color: #854D0E;
+      border: 1px solid var(--amber-bd);
+    }
+    .notice {
+      background: var(--warn-bg);
+      border: 1px solid var(--coral);
+      border-radius: 14px;
+      padding: 13px 14px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+    .amber-box {
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-bd);
+      border-radius: 14px;
+      padding: 13px 14px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+    .info-box {
+      background: var(--ok-bg);
+      border: 1px solid var(--mint);
+      border-radius: 14px;
+      padding: 13px 14px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+    label { display: block; font-weight: 700; font-size: 14px; margin: 12px 0 6px; }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1.5px solid #C5D6D0;
+      font-size: 16px;
+      background: #fff;
+      color: var(--ink);
+    }
+    .dmy-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.35fr;
+      gap: 8px;
+    }
+    .dmy-row input {
+      text-align: center;
+      padding: 12px 8px;
+    }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    button, .shop-btn {
+      cursor: pointer;
+      border: none;
+      border-radius: 15px;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      min-height: 46px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-main { background: var(--teal); color: #fff; }
+    .btn-sec { background: var(--peach); color: #5B2C1D; }
+    .btn-ghost { background: var(--bg); color: var(--ink); border: 1.5px solid var(--border); }
+    .shop-btn {
+      background: #EE4D2D;
+      color: #fff;
+      font-size: 14px;
+      padding: 10px 14px;
+      min-height: 42px;
+      border-radius: 12px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    .choice {
+      width: 100%;
+      text-align: left;
+      background: #fff;
+      color: var(--ink);
+      border: 2px solid var(--border);
+      margin-bottom: 9px;
+      padding: 14px;
+      justify-content: flex-start;
+    }
+    .choice.selected {
+      border-color: var(--teal);
+      background: var(--ok-bg);
+    }
+    ul, ol { margin: 6px 0 0; padding-left: 20px; }
+    li { margin-bottom: 7px; }
+    .muted { color: var(--muted); font-size: 14px; }
+    .small { font-size: 13px; color: var(--muted); }
+    .hidden { display: none; }
+    .err { color: #B91C1C; font-weight: 700; font-size: 14px; margin-top: 8px; }
+    .score-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .score-item {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .score-num { font-size: 20px; font-weight: 800; color: var(--teal); }
+    textarea.copy-box {
+      width: 100%;
+      min-height: 155px;
+      border-radius: 14px;
+      border: 1.5px solid #C5D6D0;
+      padding: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      background: var(--bg);
+      color: var(--ink);
+      margin-top: 8px;
+    }
+    .shop-list-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .shop-card {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .shop-title { font-weight: 800; font-size: 15.5px; color: var(--ink); margin-bottom: 4px; }
+    .shop-goal { font-size: 13.5px; color: #1D7870; font-weight: 600; margin-bottom: 8px; }
+    .shop-guide {
+      background: #FFFFFF;
+      border-left: 3px solid var(--mint);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 13.5px;
+      color: var(--ink);
+      margin-top: 6px;
+    }
+    .shop-tip {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    .shop-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal);
+      background: var(--ok-bg);
+      padding: 2px 9px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      width: fit-content;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 1. TRANG CHỦ -->
+    <section id="scr-home" class="card">
+      <div class="hero-banner">
+        <svg width="68" height="68" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+          <circle cx="40" cy="40" r="38" fill="#FFFFFF" stroke="#B8EFE0" stroke-width="3"/>
+          <circle cx="24" cy="24" r="9" fill="#E8866B"/>
+          <circle cx="56" cy="24" r="9" fill="#E8866B"/>
+          <circle cx="40" cy="43" r="21" fill="#FAD4C0"/>
+          <ellipse cx="40" cy="48" rx="9" ry="7" fill="#FFF9F3"/>
+          <circle cx="33" cy="39" r="2.5" fill="#24343A"/>
+          <circle cx="47" cy="39" r="2.5" fill="#24343A"/>
+          <circle cx="40" cy="45" r="2.5" fill="#1D7870"/>
+          <path d="M36 50 Q40 54 44 50" stroke="#24343A" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M60 15 L63 11 M65 19 L69 17" stroke="#1D7870" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div class="pill">Cùng Con Cất Tiếng · 12–36 tháng</div>
+          <div style="font-weight:700;font-size:15px;color:#24343A;">Mỗi tiếng nói nhỏ, một bước lớn khôn</div>
+        </div>
+      </div>
+
+      <h1>Sàng lọc nguy cơ RLPTK &amp; Chậm nói cho mẹ ở xa chuyên gia</h1>
+      <p class="muted">
+        Dựa trên thang điểm quốc tế <strong>M-CHAT-R/F™</strong> và mốc ngôn ngữ <strong>CDC (2022) / ASHA</strong> giúp mẹ có cái nhìn khách quan, nhận diện mức độ nguy cơ và biết chính xác cần làm gì tiếp theo.
+      </p>
+
+      <div class="info-box">
+        <strong>Căn cứ khoa học:</strong>
+        <ul>
+          <li><strong>M-CHAT-R/F™</strong> (<em>Robins, Fein &amp; Barton, 2009</em>): 20 câu hành vi chuẩn quốc tế (<strong>0–2đ: Nguy cơ thấp</strong>; <strong>3–7đ: Nguy cơ trung bình</strong>; <strong>8–20đ: Nguy cơ cao</strong>).</li>
+          <li><strong>Mốc ngôn ngữ CDC (2022) / ASHA &amp; Cảnh báo AAP</strong>: Rà soát hiểu lời nói, từ đơn, ghép 2 từ, thính giác và dấu hiệu thoái lui (mất kỹ năng).</li>
+        </ul>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-main" onclick="openProfile()">Bắt đầu đánh giá cho bé</button>
+        <button id="btn-resume" class="btn-ghost hidden" onclick="resumeSaved()">Tiếp tục bài đang làm dở</button>
+      </div>
+
+      <div class="notice">
+        <strong>Lưu ý y khoa:</strong> Công cụ sàng lọc chuẩn hóa ban đầu giúp phát hiện sớm nguy cơ để đi khám đúng chuyên khoa kịp thời — <strong>không thay thế chẩn đoán lâm sàng</strong> của bác sĩ.
+      </div>
+    </section>
+
+    <!-- 2. HỒ SƠ BÉ -->
+    <section id="scr-profile" class="card hidden">
+      <div class="pill">Bước 1 / 2 · Thông tin của bé</div>
+      <h2>Hồ sơ tuổi &amp; thính lực</h2>
+
+      <label>Tên gọi của bé (không bắt buộc)</label>
+      <input id="p-name" type="text" placeholder="Ví dụ: Bé Bắp, Mía..." />
+
+      <label>Ngày sinh của bé * (Ngày / Tháng / Năm — dd/mm/yyyy)</label>
+      <div class="dmy-row">
+        <input id="p-dob-d" type="number" inputmode="numeric" min="1" max="31" placeholder="Ngày (dd)" aria-label="Ngày sinh (dd)" />
+        <input id="p-dob-m" type="number" inputmode="numeric" min="1" max="12" placeholder="Tháng (mm)" aria-label="Tháng sinh (mm)" />
+        <input id="p-dob-y" type="number" inputmode="numeric" min="2020" max="2026" placeholder="Năm (yyyy)" aria-label="Năm sinh (yyyy)" />
+      </div>
+
+      <label>Ngày làm đánh giá (Ngày / Tháng / Năm — dd/mm/yyyy)</label>
+      <div class="dmy-row">
+        <input id="p-eval-d" type="number" inputmode="numeric" min="1" max="31" placeholder="dd" aria-label="Ngày đánh giá (dd)" />
+        <input id="p-eval-m" type="number" inputmode="numeric" min="1" max="12" placeholder="mm" aria-label="Tháng đánh giá (mm)" />
+        <input id="p-eval-y" type="number" inputmode="numeric" min="2024" max="2030" placeholder="yyyy" aria-label="Năm đánh giá (yyyy)" />
+      </div>
+
+      <label style="display:flex;align-items:center;gap:8px;font-weight:600;cursor:pointer;">
+        <input id="p-preterm" type="checkbox" style="width:auto;" />
+        Bé sinh non (trước 37 tuần thai)
+      </label>
+
+      <div id="p-weeks-wrap" class="hidden">
+        <label>Tuổi thai lúc sinh (tuần)</label>
+        <input id="p-weeks" type="number" min="22" max="43" placeholder="Ví dụ: 33" />
+      </div>
+
+      <label>Bé đã từng được đo/kiểm tra thính lực chưa?</label>
+      <select id="p-hearing">
+        <option value="unsure">Không chắc</option>
+        <option value="yes">Đã kiểm tra</option>
+        <option value="no">Chưa kiểm tra</option>
+      </select>
+
+      <label style="display:flex;align-items:flex-start;gap:8px;font-weight:500;cursor:pointer;">
+        <input id="p-consent" type="checkbox" style="width:auto;margin-top:4px;" />
+        <span>Tôi là cha/mẹ hoặc người giám hộ, đồng ý dùng công cụ sàng lọc ban đầu này (dữ liệu chỉ lưu trên điện thoại của tôi).</span>
+      </label>
+
+      <p id="p-err" class="err hidden"></p>
+
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="showScr('scr-home')">Quay lại</button>
+        <button class="btn-main" onclick="beginQuiz()">Vào bài đánh giá</button>
+      </div>
+    </section>
+
+    <!-- 3. BỘ CÂU HỎI -->
+    <section id="scr-quiz" class="card hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+        <span id="q-step" class="pill">Câu 1</span>
+        <span id="q-domain" class="small"></span>
+      </div>
+      <div id="q-source-tag" class="small" style="font-weight:700;color:var(--teal);margin-bottom:6px;"></div>
+      <h2 id="q-text"></h2>
+      <p id="q-tip" class="muted"></p>
+      <div id="q-choices"></div>
+      <div id="q-reg-alert" class="notice hidden">
+        <strong>Cảnh báo thoái lui phát triển (Red Flag):</strong> Theo khuyến cáo của Viện Hàn lâm Nhi khoa Hoa Kỳ (AAP), bất kỳ sự <strong>mất hoặc giảm kỹ năng ngôn ngữ hay tương tác xã hội từng có</strong> ở bất kỳ độ tuổi nào đều là chỉ định <strong>đưa trẻ đi khám chuyên khoa ngay lập tức</strong>.
+      </div>
+      <p id="q-err" class="err hidden"></p>
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="prevQ()">Câu trước</button>
+        <button class="btn-main" onclick="nextQ()">Tiếp tục</button>
+      </div>
+    </section>
+
+    <!-- 4. KẾT QUẢ CHẤM ĐIỂM, CẢNH BÁO NGUY CƠ & HÀNH ĐỘNG TIẾP THEO -->
+    <section id="scr-result" class="hidden">
+      <div class="card">
+        <div id="r-badge" class="pill"></div>
+        <h1 id="r-headline"></h1>
+        <p id="r-meta" class="muted"></p>
+
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="small">Điểm nguy cơ M-CHAT-R™</div>
+            <div id="r-mchat-score" class="score-num">0 / 20</div>
+            <div id="r-mchat-tier" class="small" style="font-weight:700;"></div>
+          </div>
+          <div class="score-item">
+            <div class="small">Mốc ngôn ngữ CDC/ASHA</div>
+            <div id="r-lang-score" class="score-num">0 mục chậm</div>
+            <div id="r-lang-tier" class="small" style="font-weight:700;"></div>
+          </div>
+        </div>
+
+        <div id="r-age-note" class="small"></div>
+        <div id="r-signals"></div>
+      </div>
+
+      <div class="card" style="border-color:var(--coral);">
+        <h3>1. Cảnh báo nguy cơ &amp; Cấp bách nhất lúc này</h3>
+        <ul id="r-urgent"></ul>
+      </div>
+
+      <div class="card">
+        <h3>2. Cần làm gì tiếp theo (Cho phụ huynh ở xa chuyên gia)</h3>
+        <ol id="r-next-steps"></ol>
+      </div>
+
+      <div class="card">
+        <h3>3. Can thiệp sớm tại nhà hằng ngày trong lúc chờ khám</h3>
+        <ul id="r-home-actions"></ul>
+      </div>
+
+      <div id="shop-section" class="card" style="border-color:var(--mint);">
+        <h3>4. Gợi ý món chơi &amp; hướng dẫn cách chơi giúp bé cải thiện giao tiếp tại nhà</h3>
+        <p class="small">
+          Khi bé có dấu hiệu chậm nói hoặc giảm tương tác hai chiều, món đồ chơi chỉ thật sự hữu ích nếu <strong>mẹ ngồi ngang tầm mắt chơi cùng bé</strong>, chờ bé phản ứng và mở rộng lời nói thay vì để bé tự chơi một mình. Dưới đây là 4 món gợi ý kèm cách chơi cải thiện từng kỹ năng <em>(link tham khảo Shopee Affiliate)</em>:
+        </p>
+        <div id="shop-list" class="shop-list-stack"></div>
+      </div>
+
+      <div class="card">
+        <h3>5. Các mục chọn “Không chắc” (Cần quan sát lại)</h3>
+        <div id="r-unsure" class="info-box"></div>
+      </div>
+
+      <div class="card">
+        <h3>6. Phiếu tóm tắt chuẩn chuyên môn gửi bác sĩ / khám từ xa</h3>
+        <p class="small">Bấm nút sao chép bên dưới để dán gửi Zalo cho bác sĩ nhi khoa phát triển hoặc chuyên viên âm ngữ trị liệu xem trước:</p>
+        <textarea id="r-doctor-summary" class="copy-box" readonly></textarea>
+        <div class="btn-row">
+          <button class="btn-main" onclick="copyDoctorSummary()">Sao chép phiếu gửi bác sĩ</button>
+          <button class="btn-sec" onclick="openProfile()">Đánh giá lại</button>
+          <button class="btn-ghost" onclick="showScr('scr-home')">Trang chủ</button>
+        </div>
+        <p id="copy-msg" class="small" style="color:var(--teal);font-weight:700;margin-top:8px;"></p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const SHOPEE_ITEMS = [
+      {
+        tag: "Món 1 · Luyện chú ý chung, chỉ tay & gọi từ đơn",
+        title: "Bộ thẻ Flashcard tương tác cho bé",
+        goal: "Cải thiện: Chú ý chung, chỉ tay chia sẻ/yêu cầu và bật từ đơn quen thuộc.",
+        guide: "Cách chơi để cải thiện: Mẹ cầm 2 thẻ giơ ngang tầm mắt, gọi tên ngắn gọn ('gà', 'bóng'). Dừng lại 3–5 giây chờ bé nhìn mắt, chỉ tay hoặc phát âm rồi mới khen; sau đó đặt 2 thẻ trước mặt và hỏi 'Đâu là quả bóng?' để bé chỉ tay tương tác.",
+        tip: "Mẹo nhỏ: Đừng giơ cả xấp thẻ lật liên tục như đọc thuộc lòng — mỗi lượt chỉ chọn 2–3 thẻ gần gũi với bé.",
+        url: "https://s.shopee.vn/90708DS8AB"
+      },
+      {
+        tag: "Món 2 · Rèn chơi luân phiên & chờ đợi giao tiếp",
+        title: "Tháp cầu vồng xếp chồng",
+        goal: "Cải thiện: Giảm chơi một chiều, tăng nhìn người lớn, ra hiệu xin và chờ đến lượt.",
+        guide: "Cách chơi để cải thiện: Mẹ giữ sẵn các vòng cầu vồng trong tay, chỉ đưa 1 vòng khi bé nhìn vào mẹ, chỉ tay hoặc bật âm ('nữa', 'vòng'). Mẹ xếp 1 vòng rồi dừng lại chờ bé xếp tiếp để tạo nhịp chơi qua lại.",
+        tip: "Mẹo nhỏ: Nếu bé giật cả chồng hoặc tự xếp một mình im lặng, mẹ nhẹ nhàng giữ lại 1 vòng trên tay để tạo cơ hội giao tiếp.",
+        url: "https://s.shopee.vn/4fy0yRU5Rt"
+      },
+      {
+        tag: "Món 3 · Tăng hiểu lời nói & gắn kết tương tác hằng ngày",
+        title: "Sách lật mở tương tác cho bé",
+        goal: "Cải thiện: Hiểu từ/cụm từ quen thuộc, theo dõi ánh nhìn và trò chuyện cùng mẹ thay cho xem màn hình.",
+        guide: "Cách chơi để cải thiện: Mẹ mở trang sách, chỉ tay vào nắp lật và hỏi 'Ai trốn ở đây nhỉ?'. Khi bé lật ra, mẹ gọi tên rõ ràng ('chó con', 'mở ra') và thêm 1–2 từ mở rộng ('mở cửa rồi') thay vì đọc dồn dập hết cả trang.",
+        tip: "Mẹo nhỏ: Chọn khung giờ bé tỉnh táo, tắt TV/điện thoại xung quanh để bé tập trung nghe giọng mẹ.",
+        url: "https://s.shopee.vn/1qdpbKC7Uf"
+      },
+      {
+        tag: "Món 4 · Phát triển chơi giả vờ & ghép cụm 2–3 từ",
+        title: "Bộ đồ chơi đóng vai bác sĩ",
+        goal: "Cải thiện: Chơi giả vờ/tưởng tượng, hiểu tình huống sinh hoạt và ghép cụm 2–3 từ có nghĩa.",
+        guide: "Cách chơi để cải thiện: Mẹ làm mẫu 'khám bệnh' cho thú bông hoặc cho bé ('khám tai', 'uống thuốc', 'ngoan nào'), sau đó dừng lại và mời bé làm theo. Khi bé nói được 1 từ, mẹ nối thêm thành cụm ngắn như 'khám gấu', 'đau bụng', 'hết đau'.",
+        tip: "Mẹo nhỏ: Dành cho bé từ 18–36 tháng; mẹ cất bớt các chi tiết nhỏ nếu bé còn hay đưa đồ vật vào miệng.",
+        url: "https://s.shopee.vn/3B9DCHYFyE"
+      }
+    ];
+
+    function renderShopeeItems() {
+      const box = document.getElementById("shop-list");
+      box.innerHTML = "";
+      SHOPEE_ITEMS.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "shop-card";
+        const hasLink = item.url && item.url.trim() !== "";
+        const btnHtml = hasLink
+          ? `<a class="shop-btn" href="${item.url.trim()}" target="_blank" rel="noopener noreferrer nofollow">Xem sản phẩm trên Shopee</a>`
+          : "";
+        card.innerHTML = `
+          <div>
+            <span class="shop-tag">${item.tag}</span>
+            <div class="shop-title">${item.title}</div>
+            <div class="shop-goal">${item.goal}</div>
+            <div class="shop-guide">${item.guide}</div>
+            <div class="shop-tip">${item.tip}</div>
+          </div>
+          <div>${btnHtml}</div>
+        `;
+        box.appendChild(card);
+      });
+    }
+
+    const QUESTIONS = [
+      { id: "M01", scale: "M-CHAT-R™ #1", domain: "Chú ý chung & Tương tác", minM: 12, riskWhen: "not_observed",
+        text: "Nếu bạn chỉ tay vào một vật gì đó ở trong phòng, bé có nhìn theo hướng tay bạn chỉ không?",
+        tip: "Ví dụ: Bạn chỉ vào món đồ chơi hay bức tranh trên tường, bé nhìn theo vật đó chứ không chỉ nhìn vào bàn tay bạn." },
+      { id: "M02", scale: "M-CHAT-R™ #2 (Thính lực)", domain: "Thính giác & Phản ứng", minM: 12, riskWhen: "yes_concern",
+        text: "Bạn đã bao giờ tự hỏi liệu con mình có bị điếc hay nghe không rõ không?",
+        tip: "Lưu ý: Chọn 'Có' nếu gia đình từng nghi ngờ bé nghe kém hoặc phản ứng âm thanh lúc rõ lúc không." },
+      { id: "M03", scale: "M-CHAT-R™ #3", domain: "Chơi giả vờ", minM: 16, riskWhen: "not_observed",
+        text: "Bé có chơi trò giả vờ hoặc tưởng tượng không?",
+        tip: "Ví dụ: Giả vờ uống nước từ cốc rỗng, giả vờ nghe điện thoại, cho búp bê/thú bông ăn." },
+      { id: "M04", scale: "M-CHAT-R™ #4", domain: "Vận động & Khám phá", minM: 12, riskWhen: "not_observed",
+        text: "Bé có thích trèo lên các đồ vật (như ghế sofa, cầu thang, đồ chơi ở sân chơi) không?",
+        tip: "Quan sát sự chủ động khám phá vận động thông thường trong sinh hoạt." },
+      { id: "M05", scale: "M-CHAT-R™ #5 (Hành vi đặc trưng)", domain: "Hành vi vận động lặp lại", minM: 12, riskWhen: "yes_concern",
+        text: "Bé có hay làm các cử động ngón tay bất thường ở gần mắt mình không?",
+        tip: "Ví dụ: Hay vẫy vẫy, xoay ngón tay sát trước mắt một cách lặp lại." },
+      { id: "M06", scale: "M-CHAT-R™ #6", domain: "Chỉ tay yêu cầu", minM: 12, riskWhen: "not_observed",
+        text: "Bé có dùng một ngón tay để chỉ khi muốn xin thứ gì đó hoặc cần giúp đỡ không?",
+        tip: "Ví dụ: Giơ ngón trỏ chỉ vào bình sữa, bánh hoặc món đồ ở trên cao." },
+      { id: "M07", scale: "M-CHAT-R™ #7", domain: "Chỉ tay chia sẻ", minM: 14, riskWhen: "not_observed",
+        text: "Bé có dùng một ngón tay để chỉ cho bạn thấy điều gì đó thú vị (không phải để xin) không?",
+        tip: "Ví dụ: Chỉ máy bay trên trời, xe tải ngoài đường hay con chó để chia sẻ sự chú ý với bạn." },
+      { id: "M08", scale: "M-CHAT-R™ #8", domain: "Quan tâm bạn bè", minM: 15, riskWhen: "not_observed",
+        text: "Bé có quan tâm đến những đứa trẻ khác không?",
+        tip: "Ví dụ: Nhìn theo, mỉm cười hoặc lại gần khi thấy các bạn nhỏ khác đang chơi." },
+      { id: "M09", scale: "M-CHAT-R™ #9", domain: "Chia sẻ đồ vật", minM: 12, riskWhen: "not_observed",
+        text: "Bé có mang đồ vật lại đưa cho bạn xem — chỉ để khoe chứ không phải để nhờ giúp đỡ — không?",
+        tip: "Ví dụ: Cầm bông hoa, cuốn sách hoặc đồ chơi đưa lên cho bạn xem cùng." },
+      { id: "M10", scale: "M-CHAT-R™ #10", domain: "Phản ứng gọi tên", minM: 12, riskWhen: "not_observed",
+        text: "Bé có phản ứng lại khi bạn gọi tên bé không?",
+        tip: "Ví dụ: Ngẩng đầu nhìn, quay lại hoặc dừng việc đang làm khi nghe gọi tên (không cần gọi quá to)." },
+      { id: "M11", scale: "M-CHAT-R™ #11", domain: "Đáp lại nụ cười", minM: 12, riskWhen: "not_observed",
+        text: "Khi bạn mỉm cười với bé, bé có cười đáp lại với bạn không?",
+        tip: "Nụ cười giao tiếp xã hội đáp lại nụ cười của người thân." },
+      { id: "M12", scale: "M-CHAT-R™ #12 (Nhạy cảm giác quan)", domain: "Phản ứng giác quan", minM: 12, riskWhen: "yes_concern",
+        text: "Bé có hay hoảng sợ hoặc khó chịu quá mức với những tiếng ồn bình thường hằng ngày không?",
+        tip: "Ví dụ: Bịt tai, khóc thét hoảng loạn trước tiếng máy hút bụi, máy xay sinh tố hoặc tiếng ồn thông thường." },
+      { id: "M13", scale: "M-CHAT-R™ #13", domain: "Vận động thô", minM: 15, riskWhen: "not_observed",
+        text: "Bé có tự đi được mà không cần vịn vào thứ gì không?",
+        tip: "Đánh giá khả năng tự đi lại độc lập." },
+      { id: "M14", scale: "M-CHAT-R™ #14", domain: "Giao tiếp ánh mắt", minM: 12, riskWhen: "not_observed",
+        text: "Bé có nhìn vào mắt bạn khi bạn đang nói chuyện, chơi đùa hoặc thay đồ cho bé không?",
+        tip: "Giao tiếp mắt tự nhiên trong lúc tương tác trực diện." },
+      { id: "M15", scale: "M-CHAT-R™ #15", domain: "Bắt chước", minM: 12, riskWhen: "not_observed",
+        text: "Bé có cố gắng bắt chước những gì bạn làm không?",
+        tip: "Ví dụ: Vẫy tay chào, vỗ tay, hoặc làm theo điệu bộ vui của bạn." },
+      { id: "M16", scale: "M-CHAT-R™ #16", domain: "Theo dõi ánh nhìn", minM: 12, riskWhen: "not_observed",
+        text: "Nếu bạn quay đầu nhìn sang một vật gì đó, bé có nhìn quanh xem bạn đang nhìn cái gì không?",
+        tip: "Kiểm tra khả năng đọc hướng ánh nhìn của người khác." },
+      { id: "M17", scale: "M-CHAT-R™ #17", domain: "Thu hút sự chú ý", minM: 15, riskWhen: "not_observed",
+        text: "Bé có cố gắng làm điều gì đó để bạn phải ngắm nhìn hoặc khen ngợi bé không?",
+        tip: "Ví dụ: Nhìn bạn chờ khen 'Giỏi quá!' hoặc làm trò để thu hút sự chú ý của bạn." },
+      { id: "M18", scale: "M-CHAT-R™ #18", domain: "Hiểu lời nói", minM: 15, riskWhen: "not_observed",
+        text: "Bé có hiểu khi bạn bảo bé làm một việc gì đó (không dùng cử chỉ chỉ trỏ) không?",
+        tip: "Ví dụ: Nói 'Đặt quyển sách lên ghế' mà không chỉ tay, bé vẫn hiểu và làm được." },
+      { id: "M19", scale: "M-CHAT-R™ #19", domain: "Tham chiếu xã hội", minM: 15, riskWhen: "not_observed",
+        text: "Nếu có điều gì mới lạ xảy ra, bé có nhìn lên mặt bạn để xem phản ứng của bạn thế nào không?",
+        tip: "Ví dụ: Nghe tiếng động lạ hoặc thấy món đồ chơi mới, bé nhìn mặt bạn xem bạn vui hay lo." },
+      { id: "M20", scale: "M-CHAT-R™ #20", domain: "Chơi vận động tương tác", minM: 12, riskWhen: "not_observed",
+        text: "Bé có thích các hoạt động vận động tương tác (như nhún nhảy trên đầu gối bạn, chơi ú òa, đu đưa) không?",
+        tip: "Sự hào hứng khi chơi các trò vận động gắn kết với cha mẹ." },
+      { id: "L01", scale: "Mốc CDC/ASHA · 12–15 tháng", domain: "Ngôn ngữ tiếp nhận (Hiểu)", minM: 12, riskWhen: "not_observed",
+        text: "Bé có hiểu các từ/lệnh quen thuộc hằng ngày (ăn, uống, đi ngủ, lại đây) không?",
+        tip: "Trẻ 12–15 tháng cần hiểu được các từ khóa gắn với sinh hoạt quen thuộc." },
+      { id: "L02", scale: "Mốc CDC/ASHA · 15–18 tháng", domain: "Ngôn ngữ biểu đạt (Từ đơn)", minM: 15, riskWhen: "not_observed",
+        text: "Bé có nói được ít nhất 3–5 từ đơn có nghĩa rõ ràng (ngoài 'ba', 'mẹ') để gọi tên hoặc yêu cầu không?",
+        tip: "Theo CDC 2022, mốc 15–18 tháng trẻ bắt đầu dùng nhiều từ đơn có nghĩa ngoài ba/mẹ." },
+      { id: "L03", scale: "Mốc CDC/ASHA · 21–24 tháng", domain: "Ngôn ngữ biểu đạt (Ghép 2 từ)", minM: 21, riskWhen: "not_observed",
+        text: "Bé có tự ghép được cụm 2 từ có nghĩa với nhau (ví dụ: 'mẹ bế', 'thêm sữa', 'uống nước') không?",
+        tip: "Theo CDC/ASHA, từ 24 tháng trẻ cần ghép được ít nhất 2 từ có nghĩa (không tính hát vẹt)." },
+      { id: "L04", scale: "Mốc CDC/ASHA · 30–36 tháng", domain: "Ngôn ngữ biểu đạt (Câu ngắn)", minM: 30, riskWhen: "not_observed",
+        text: "Bé có nói được câu 3 từ trở lên và người ngoài gia đình hiểu được phần lớn lời bé nói không?",
+        tip: "Từ 30–36 tháng trẻ dùng câu ngắn để hỏi, kể chuyện và giao tiếp mạch lạc hơn." },
+      { id: "R01", scale: "Cảnh báo AAP (Thoái lui)", domain: "Mất kỹ năng đã có", minM: 12, riskWhen: "yes_concern",
+        text: "Bé có từng mất đi bất kỳ từ ngữ, tiếng bập bẹ, cử chỉ hoặc kỹ năng giao tiếp xã hội nào mà trước đây bé đã làm được không?",
+        tip: "Ví dụ: Trước đây từng nói vài từ, biết chỉ tay hay nhìn mắt nhưng nay không còn làm nữa." }
+    ];
+
+    const STD_CHOICES = [
+      { v: "often", label: "Có, thường xuyên" },
+      { v: "sometimes", label: "Có, đôi khi" },
+      { v: "not_observed", label: "Không có" },
+      { v: "unsure", label: "Không chắc" }
+    ];
+
+    const CONCERN_CHOICES = [
+      { v: "no", label: "Không có dấu hiệu này" },
+      { v: "sometimes", label: "Có, đôi khi" },
+      { v: "often", label: "Có, rõ rệt / thường xuyên" },
+      { v: "unsure", label: "Không chắc" }
+    ];
+
+    const STORAGE_KEY = "ccct_validated_screening_v6";
+
+    const nowObj = new Date();
+    const todayParts = {
+      d: nowObj.getDate(),
+      m: nowObj.getMonth() + 1,
+      y: nowObj.getFullYear()
+    };
+
+    let state = {
+      name: "",
+      dobParts: { d: null, m: null, y: null },
+      evalParts: { ...todayParts },
+      preterm: false,
+      weeks: null,
+      hearing: "unsure",
+      months: 18,
+      qs: [],
+      idx: 0,
+      ans: {}
+    };
+
+    function pad2(n) {
+      return String(n || "").padStart(2, "0");
+    }
+
+    function formatDMY(parts) {
+      if (!parts || !parts.d || !parts.m || !parts.y) return "";
+      return `${pad2(parts.d)}/${pad2(parts.m)}/${parts.y}`;
+    }
+
+    function isValidDMY(d, m, y) {
+      if (!d || !m || !y) return false;
+      if (d < 1 || d > 31 || m < 1 || m > 12 || y < 1900 || y > 2100) return false;
+      const dt = new Date(Date.UTC(y, m - 1, d));
+      return (
+        dt.getUTCFullYear() === y &&
+        dt.getUTCMonth() === m - 1 &&
+        dt.getUTCDate() === d
+      );
+    }
+
+    function fillProfileInputs() {
+      document.getElementById("p-name").value = state.name || "";
+      document.getElementById("p-dob-d").value = state.dobParts?.d || "";
+      document.getElementById("p-dob-m").value = state.dobParts?.m || "";
+      document.getElementById("p-dob-y").value = state.dobParts?.y || "";
+      document.getElementById("p-eval-d").value = state.evalParts?.d ?? todayParts.d;
+      document.getElementById("p-eval-m").value = state.evalParts?.m ?? todayParts.m;
+      document.getElementById("p-eval-y").value = state.evalParts?.y ?? todayParts.y;
+      document.getElementById("p-preterm").checked = !!state.preterm;
+      document.getElementById("p-weeks-wrap").classList.toggle("hidden", !state.preterm);
+      document.getElementById("p-weeks").value = state.weeks || "";
+      document.getElementById("p-hearing").value = state.hearing || "unsure";
+    }
+
+    fillProfileInputs();
+
+    document.getElementById("p-preterm").addEventListener("change", (e) => {
+      document.getElementById("p-weeks-wrap").classList.toggle("hidden", !e.target.checked);
+    });
+
+    (function checkSaved() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.dobParts && isValidDMY(parsed.dobParts.d, parsed.dobParts.m, parsed.dobParts.y) && parsed.qs && parsed.qs.length) {
+            document.getElementById("btn-resume").classList.remove("hidden");
+          }
+        }
+      } catch (e) {}
+    })();
+
+    function saveDraft() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+    }
+
+    function resumeSaved() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        state = JSON.parse(raw);
+        if (Object.keys(state.ans).length >= state.qs.length) {
+          evaluateValidated();
+          showScr("scr-result");
+        } else {
+          renderQ();
+          showScr("scr-quiz");
+        }
+      } catch (e) {}
+    }
+
+    function showScr(id) {
+      ["scr-home", "scr-profile", "scr-quiz", "scr-result"].forEach((s) => {
+        document.getElementById(s).classList.toggle("hidden", s !== id);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openProfile() {
+      fillProfileInputs();
+      showScr("scr-profile");
+    }
+
+    function calcEffectiveMonthsFromParts(dobP, evalP, preterm, weeks) {
+      const d1 = new Date(Date.UTC(dobP.y, dobP.m - 1, dobP.d));
+      const d2 = new Date(Date.UTC(evalP.y, evalP.m - 1, evalP.d));
+      let m = (d2.getUTCFullYear() - d1.getUTCFullYear()) * 12 + (d2.getUTCMonth() - d1.getUTCMonth());
+      if (d2.getUTCDate() < d1.getUTCDate()) m -= 1;
+      m = Math.max(0, m);
+      if (preterm && weeks && weeks > 0 && weeks < 37 && m <= 24) {
+        m = Math.max(0, m - Math.round((40 - weeks) / 4.345));
+      }
+      return m;
+    }
+
+    function beginQuiz() {
+      const dobD = Number(document.getElementById("p-dob-d").value);
+      const dobM = Number(document.getElementById("p-dob-m").value);
+      const dobY = Number(document.getElementById("p-dob-y").value);
+
+      const evalD = Number(document.getElementById("p-eval-d").value) || todayParts.d;
+      const evalM = Number(document.getElementById("p-eval-m").value) || todayParts.m;
+      const evalY = Number(document.getElementById("p-eval-y").value) || todayParts.y;
+
+      const consent = document.getElementById("p-consent").checked;
+      const err = document.getElementById("p-err");
+
+      if (!isValidDMY(dobD, dobM, dobY)) {
+        err.textContent = "Vui lòng nhập đúng Ngày / Tháng / Năm sinh (dd/mm/yyyy) của bé.";
+        err.classList.remove("hidden");
+        return;
+      }
+      if (!isValidDMY(evalD, evalM, evalY)) {
+        err.textContent = "Ngày làm đánh giá (dd/mm/yyyy) chưa hợp lệ.";
+        err.classList.remove("hidden");
+        return;
+      }
+      if (!consent) {
+        err.textContent = "Vui lòng xác nhận đồng ý sử dụng công cụ sàng lọc ban đầu.";
+        err.classList.remove("hidden");
+        return;
+      }
+
+      err.classList.add("hidden");
+      state.name = document.getElementById("p-name").value.trim();
+      state.dobParts = { d: dobD, m: dobM, y: dobY };
+      state.evalParts = { d: evalD, m: evalM, y: evalY };
+      state.preterm = document.getElementById("p-preterm").checked;
+      state.weeks = Number(document.getElementById("p-weeks").value) || null;
+      state.hearing = document.getElementById("p-hearing").value;
+      state.months = calcEffectiveMonthsFromParts(state.dobParts, state.evalParts, state.preterm, state.weeks);
+      state.qs = QUESTIONS.filter((q) => state.months >= q.minM);
+      state.idx = 0;
+      state.ans = {};
+      saveDraft();
+      renderQ();
+      showScr("scr-quiz");
+    }
+
+    function renderQ() {
+      const q = state.qs[state.idx];
+      document.getElementById("q-step").textContent = `Câu ${state.idx + 1} / ${state.qs.length}`;
+      document.getElementById("q-domain").textContent = `${q.domain} · ~${state.months} tháng`;
+      document.getElementById("q-source-tag").textContent = `Căn cứ: ${q.scale}`;
+      document.getElementById("q-text").textContent = q.text;
+      document.getElementById("q-tip").textContent = q.tip;
+      document.getElementById("q-err").classList.add("hidden");
+
+      const list = q.riskWhen === "yes_concern" ? CONCERN_CHOICES : STD_CHOICES;
+      const box = document.getElementById("q-choices");
+      box.innerHTML = "";
+      list.forEach((c) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "choice" + (state.ans[q.id] === c.v ? " selected" : "");
+        b.textContent = c.label;
+        b.onclick = () => {
+          state.ans[q.id] = c.v;
+          saveDraft();
+          renderQ();
+        };
+        box.appendChild(b);
+      });
+
+      const showReg = q.id === "R01" && (state.ans["R01"] === "often" || state.ans["R01"] === "sometimes");
+      document.getElementById("q-reg-alert").classList.toggle("hidden", !showReg);
+    }
+
+    function prevQ() {
+      if (state.idx > 0) {
+        state.idx -= 1;
+        renderQ();
+      } else {
+        showScr("scr-profile");
+      }
+    }
+
+    function nextQ() {
+      const q = state.qs[state.idx];
+      const err = document.getElementById("q-err");
+      if (!state.ans[q.id]) {
+        err.textContent = "Vui lòng chọn một đáp án (hoặc chọn 'Không chắc').";
+        err.classList.remove("hidden");
+        return;
+      }
+      if (state.idx < state.qs.length - 1) {
+        state.idx += 1;
+        renderQ();
+      } else {
+        saveDraft();
+        evaluateValidated();
+        showScr("scr-result");
+      }
+    }
+
+    function evaluateValidated() {
+      const child = state.name || "bé";
+      const dobStr = formatDMY(state.dobParts);
+      const evalStr = formatDMY(state.evalParts);
+      let mchatScore = 0;
+      const mchatFailed = [];
+      const langDelayed = [];
+      const unsureList = [];
+      const criticalIds = ["M01", "M06", "M07", "M09", "M10", "M14"];
+      const mchatSometimesCritical = [];
+
+      state.qs.forEach((q) => {
+        const v = state.ans[q.id];
+        if (q.id.startsWith("M")) {
+          if (q.riskWhen === "not_observed") {
+            if (v === "not_observed") {
+              mchatScore += 1;
+              mchatFailed.push(`${q.scale}: Không có — ${q.text}`);
+            } else if (v === "sometimes" && criticalIds.includes(q.id)) {
+              mchatSometimesCritical.push(`${q.scale}: Mới ở mức 'Đôi khi' — ${q.text}`);
+            } else if (v === "unsure") {
+              unsureList.push(`${q.scale} (${q.text}) -> Không chắc`);
+            }
+          } else if (q.riskWhen === "yes_concern") {
+            if (v === "often" || v === "sometimes") {
+              mchatScore += 1;
+              mchatFailed.push(`${q.scale}: Có dấu hiệu — ${q.text}`);
+            } else if (v === "unsure") {
+              unsureList.push(`${q.scale} (${q.text}) -> Không chắc`);
+            }
+          }
+        } else if (q.id.startsWith("L")) {
+          if (v === "not_observed") {
+            langDelayed.push(`${q.scale} (${q.domain}): Không có — ${q.text}`);
+          } else if (v === "unsure") {
+            unsureList.push(`${q.scale} (${q.text}) -> Không chắc`);
+          }
+        }
+      });
+
+      const hasRegression = state.ans["R01"] === "often" || state.ans["R01"] === "sometimes";
+      const hearConcern =
+        state.ans["M02"] === "often" ||
+        state.ans["M02"] === "sometimes" ||
+        state.hearing === "no";
+
+      let mchatTier = "Nguy cơ thấp (0–2 điểm)";
+      if (mchatScore >= 8) mchatTier = "Nguy cơ CAO (8–20 điểm)";
+      else if (mchatScore >= 3) mchatTier = "Nguy cơ TRUNG BÌNH (3–7 điểm)";
+
+      document.getElementById("r-mchat-score").textContent = `${mchatScore} / 20 điểm`;
+      document.getElementById("r-mchat-tier").textContent = mchatTier;
+
+      document.getElementById("r-lang-score").textContent = `${langDelayed.length} mốc chưa đạt`;
+      document.getElementById("r-lang-tier").textContent =
+        langDelayed.length > 0 ? "Cần can thiệp & theo dõi ngôn ngữ" : "Đạt các mốc ngôn ngữ cơ bản theo tuổi";
+
+      const badge = document.getElementById("r-badge");
+      badge.className = "pill";
+      let headline = "";
+      let badgeLabel = "";
+
+      if (hasRegression || mchatScore >= 8) {
+        badge.className = "pill pill-high";
+        badgeLabel = "CẢNH BÁO NGUY CƠ CAO · CHUYỂN KHÁM CHUYÊN KHOA NGAY";
+        headline = hasRegression
+          ? `Cảnh báo cấp bách cho ${child}: Có dấu hiệu THOÁI LUI (mất kỹ năng) — Cần khám chuyên khoa ngay`
+          : `Cảnh báo nguy cơ cao cho ${child}: ${mchatScore}/20 điểm M-CHAT-R™ — Cần đánh giá chuyên sâu RLPTK ngay`;
+      } else if (mchatScore >= 3) {
+        badge.className = "pill pill-mod";
+        badgeLabel = "CẢNH BÁO NGUY CƠ TRUNG BÌNH · CẦN KHÁM ĐÁNH GIÁ SỚM";
+        headline = `Cảnh báo nguy cơ trung bình cho ${child}: ${mchatScore}/20 điểm M-CHAT-R™${langDelayed.length > 0 ? " kèm chậm mốc ngôn ngữ" : ""}`;
+      } else if (langDelayed.length > 0 || hearConcern) {
+        badge.className = "pill pill-mod";
+        badgeLabel = "NGUY CƠ RLPTK THẤP · CẢNH BÁO CHẬM NGÔN NGỮ / THÍNH LỰC";
+        headline = `Tình trạng của ${child}: Nguy cơ RLPTK thấp (${mchatScore}/20), nhưng có dấu hiệu chậm mốc ngôn ngữ / cần kiểm tra thính lực`;
+      } else if (unsureList.length >= 3) {
+        badge.className = "pill pill-mod";
+        badgeLabel = "CHƯA ĐỦ DỮ LIỆU KẾT LUẬN · CẦN QUAN SÁT LẠI";
+        headline = `Tình trạng của ${child}: Còn ${unsureList.length} câu 'Không chắc' — Cần quan sát thực tế lại để chấm điểm chính xác`;
+      } else {
+        badgeLabel = "NGUY CƠ THẤP · DUY TRÌ THEO DÕI MỐC PHÁT TRIỂN";
+        headline = `Tình trạng của ${child}: Nguy cơ RLPTK thấp (${mchatScore}/20 điểm) và đạt các mốc ngôn ngữ cơ bản`;
+      }
+
+      badge.textContent = badgeLabel;
+      document.getElementById("r-headline").textContent = headline;
+      document.getElementById("r-meta").textContent =
+        `Ngày sinh: ${dobStr} · Ngày đánh giá: ${evalStr} (~${state.months} tháng) · Thang M-CHAT-R™: ${mchatScore}/20 điểm · Mốc ngôn ngữ CDC/ASHA chưa đạt: ${langDelayed.length} · Câu 'Không chắc': ${unsureList.length}.`;
+
+      const ageNoteEl = document.getElementById("r-age-note");
+      if (state.months < 16 || state.months > 30) {
+        ageNoteEl.innerHTML = `<div class="amber-box"><strong>Lưu ý độ tuổi thang đo:</strong> M-CHAT-R/F™ được chuẩn hóa tối ưu nhất cho trẻ <strong>16–30 tháng</strong>. Hiện bé ~<strong>${state.months} tháng</strong>, nên kết quả được kết hợp thêm với bảng mốc phát triển CDC/ASHA tương ứng độ tuổi.</div>`;
+      } else {
+        ageNoteEl.innerHTML = "";
+      }
+
+      const sigBox = document.getElementById("r-signals");
+      sigBox.innerHTML = "";
+      const allFlagged = [...(hasRegression ? ["Cảnh báo AAP: Bé có dấu hiệu mất/giảm kỹ năng từng có"] : []), ...mchatFailed, ...langDelayed];
+      if (allFlagged.length > 0) {
+        const d = document.createElement("div");
+        d.className = "notice";
+        d.innerHTML = "<strong>Các dấu hiệu lệch chuẩn đã ghi nhận:</strong><ul>" +
+          allFlagged.map((x) => `<li>${x}</li>`).join("") + "</ul>";
+        sigBox.appendChild(d);
+      } else if (mchatSometimesCritical.length > 0) {
+        const d = document.createElement("div");
+        d.className = "amber-box";
+        d.innerHTML = "<strong>Các hành vi cốt lõi mới ở mức 'Đôi khi' (cần kích thích thêm):</strong><ul>" +
+          mchatSometimesCritical.map((x) => `<li>${x}</li>`).join("") + "</ul>";
+        sigBox.appendChild(d);
+      }
+
+      const urgent = [];
+      if (hasRegression) {
+        urgent.push("CẤP BÁCH (Khuyến cáo AAP): Đưa bé đi khám chuyên khoa Nhi phát triển / Tâm bệnh – Phát triển trẻ em ngay vì bé có dấu hiệu mất kỹ năng ngôn ngữ hoặc tương tác từng có.");
+      }
+      if (mchatScore >= 8) {
+        urgent.push("NGUY CƠ CAO RLPTK (8–20 điểm M-CHAT-R™): Theo quy trình chuẩn quốc tế, trẻ đạt từ 8 điểm trở lên cần được chuyển thẳng tới bác sĩ chuyên khoa phát triển / tâm lý lâm sàng để chẩn đoán xác định và can thiệp sớm ngay, KHÔNG chờ đợi thêm.");
+      } else if (mchatScore >= 3) {
+        urgent.push("NGUY CƠ TRUNG BÌNH RLPTK (3–7 điểm M-CHAT-R™): Theo quy trình M-CHAT-R/F™, cần được nhân viên y tế/chuyên gia phỏng vấn kiểm tra lại các mục bị mất điểm và đánh giá phát triển chuyên sâu.");
+      }
+      if (hearConcern || langDelayed.length > 0) {
+        urgent.push("KIỂM TRA THÍNH LỰC: Đưa bé đi đo thính lực / khám Tai Mũi Họng để loại trừ nghe kém hoặc viêm tai giữa ứ dịch — nguyên nhân hàng đầu gây chậm nói thứ phát.");
+      }
+      if (urgent.length === 0) {
+        urgent.push("Hiện chưa ghi nhận dấu hiệu cảnh báo nguy cơ cao trên thang đo. Tiếp tục theo dõi các mốc phát triển ở mốc 18, 24 và 30 tháng tuổi theo lịch khám nhi khoa.");
+      }
+
+      const nextSteps = [
+        "Quay sẵn 3 video ngắn trên điện thoại (mỗi clip 20–30 giây) trong môi trường yên tĩnh: (1) Gọi tên bé từ phía sau/bên cạnh khi không bật TV; (2) Đưa món đồ bé thích nhưng để ngoài tầm với xem bé chỉ tay/nhìn mắt/ra hiệu thế nào; (3) Lúc bé tự chơi với đồ chơi.",
+        "Nếu địa phương chưa có phòng khám chuyên khoa phát triển/âm ngữ trị liệu: Hãy đặt lịch khám Từ xa (Telehealth) với bác sĩ Nhi khoa phát triển hoặc chuyên viên Âm ngữ trị liệu tại các bệnh viện nhi tuyến trung ương (Nhi Đồng 1, Nhi Đồng 2, Nhi Trung Ương) và gửi kèm 3 video trên cùng phiếu tóm tắt ở mục 6.",
+        "Sắp xếp một chuyến đưa bé lên bệnh viện tuyến tỉnh hoặc tuyến trung ương có khoa Tâm bệnh / Phục hồi chức năng – Âm ngữ trị liệu để đo thính lực và đánh giá trực tiếp nếu điểm M-CHAT-R™ ≥ 3 hoặc có mất kỹ năng."
+      ];
+
+      const homeActions = [
+        "Ngắt hoàn toàn màn hình thụ động (điện thoại, TV, iPad): Trẻ dưới 24 tháng không nên xem màn hình vì làm giảm cơ hội tương tác hai chiều.",
+        "Quy tắc 'Ngang tầm mắt – Chờ đợi 5 giây': Ngồi ngang tầm mắt bé khi chơi; khi bé muốn lấy đồ, cầm ngang tầm mắt của bạn và chờ 3–5 giây để bé nhìn mắt, chỉ tay hoặc phát âm rồi mới đáp ứng.",
+        "Mô tả & Mở rộng lời nói (Kỹ thuật của Âm ngữ trị liệu): Gọi tên đồ vật/hành động bằng từ đơn rõ ràng; nếu bé nói 1 từ (ví dụ 'bóng'), mẹ mở rộng thành cụm 2 từ ('bóng lăn', 'quả bóng').",
+        "Chơi tương tác mặt-đối-mặt 15–20 phút mỗi ngày: Chơi ú òa, lăn bóng luân phiên, xếp tháp gỗ, giả vờ cho gấu ăn thay vì để bé tự chơi một mình."
+      ];
+
+      putList("r-urgent", urgent);
+      putList("r-next-steps", nextSteps);
+      putList("r-home-actions", homeActions);
+      renderShopeeItems();
+
+      const uBox = document.getElementById("r-unsure");
+      if (unsureList.length > 0) {
+        uBox.innerHTML = "<strong>Có " + unsureList.length + " câu bạn đang chọn 'Không chắc' (hệ thống không tự cộng điểm nguy cơ và cũng không kết luận bình thường):</strong><ul>" +
+          unsureList.map((x) => `<li>${x}</li>`).join("") +
+          "</ul><p class='small' style='margin-top:8px;'>Mẹ hãy thử tạo tình huống thực tế ở nhà trong 2–3 ngày tới rồi làm lại đánh giá để kết quả chuẩn xác nhất.</p>";
+      } else {
+        uBox.innerHTML = "<strong>Không có câu nào chọn 'Không chắc'.</strong> Tất cả câu hỏi đều đã được quan sát rõ ràng.";
+      }
+
+      const summaryLines = [
+        "PHIẾU TÓM TẮT SÀNG LỌC PHÁT TRIỂN & NGÔN NGỮ (CÙNG CON CẤT TIẾNG)",
+        `- Trẻ: ${child} | Sinh: ${dobStr} | Ngày đánh giá: ${evalStr} (~${state.months} tháng)${state.preterm ? ` (Sinh non ${state.weeks || "?"} tuần - đã tính tuổi hiệu chỉnh)` : ""}`,
+        `- Thính lực: ${state.hearing === "yes" ? "Đã kiểm tra" : state.hearing === "no" ? "Chưa kiểm tra" : "Chưa rõ"}`,
+        `- Điểm M-CHAT-R™: ${mchatScore}/20 điểm -> ${mchatTier}`,
+        `- Mốc ngôn ngữ CDC/ASHA chưa đạt: ${langDelayed.length} mục`,
+        `- Dấu hiệu thoái lui (mất kỹ năng): ${hasRegression ? "CÓ (Cảnh báo cấp bách)" : "Không"}`,
+        "- Chi tiết mục lệch chuẩn:",
+        ...(allFlagged.length > 0 ? allFlagged.map((x) => `  * ${x}`) : ["  * Chưa ghi nhận mục lệch chuẩn"]),
+        ...(unsureList.length > 0 ? [`- Mục phụ huynh còn 'Không chắc' (${unsureList.length} câu)`] : [])
+      ];
+      document.getElementById("r-doctor-summary").value = summaryLines.join("\n");
+    }
+
+    function putList(id, arr) {
+      document.getElementById(id).innerHTML = arr.map((x) => `<li>${x}</li>`).join("");
+    }
+
+    function copyDoctorSummary() {
+      const ta = document.getElementById("r-doctor-summary");
+      ta.select();
+      ta.setSelectionRange(0, 99999);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ta.value);
+      } else {
+        document.execCommand("copy");
+      }
+      document.getElementById("copy-msg").textContent = "Đã sao chép phiếu tóm tắt! Bạn có thể dán thẳng vào Zalo hoặc tin nhắn gửi bác sĩ.";
+    }
+  </script>
+</body>
+</html>
